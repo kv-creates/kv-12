@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: pip install pytest httpx
+      - run: pytest -v
+      - run: python -m model.inference.engine --code "def foo(): return 1/0" --json
+
+  kv13-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt httpx
+      - run: uvicorn api.app:app --port 8000 & sleep 3
+      - run: |
+          curl -s -X POST http://localhost:8000/v1/analyze \
+            -H "Content-Type: application/json" \
+            -d "{\"code\":\"$(cat api/app.py | head -c 4000 | sed 's/\"/\\\"/g' | tr -d '\n')\",\"language\":\"python\"}" | tee kv13-report.json
+          RISK=$(python3 -c "import json; print(json.load(open('kv13-report.json'))['risk_score'])")
+          echo "Risk score: $RISK"
+          if [ "$RISK" -gt 75 ]; then echo "::warning::KV-13 risk $RISK exceeds threshold 75"; exit 1; fi
