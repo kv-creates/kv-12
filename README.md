@@ -219,3 +219,4 @@ MIT — See [LICENSE](LICENSE).
 <p align="center"><sub>Built for developers, by developers. Minimalist, not minimal.</sub></p>
 <!-- polish 11 docs: add DESIGN_TOKENS minima -->
 <!-- polish 13 style: focus-visible a11y -->
+<!-- polish 40 improve: overall polish final -->
