@@ -1,0 +1,89 @@
+# KV-13 Training Configuration
+# 13.2B params | 1.2T tokens | 32K context
+
+model:
+  name: "kv-creates/KV-13"
+  config: "KV13Config"
+  vocab_size: 52000
+  hidden_size: 5120
+  intermediate_size: 13824
+  num_hidden_layers: 40
+  num_attention_heads: 40
+  num_key_value_heads: 8
+  max_position_embeddings: 32768
+  rope_theta: 10000.0
+  rms_norm_eps: 1.0e-06
+
+data:
+  datasets:
+    - name: "bigcode/the-stack-v2-dedup"
+      weight: 0.55
+      split: "train"
+    - name: "kv-creates/pr-reviews-4m"
+      weight: 0.15
+    - name: "cvefixes/cvefixes"
+      weight: 0.10
+    - name: "defects4j+bugsinpy"
+      weight: 0.08
+    - name: "code_instructions_180k"
+      weight: 0.07
+    - name: "legacy_pairs_cobol_java"
+      weight: 0.05
+  tokenizer: "kv-creates/kv13-tokenizer"
+  seq_length: 32768
+  packing: true
+  num_proc: 64
+
+training:
+  output_dir: "checkpoints/kv13-13b"
+  num_train_epochs: 2
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  global_batch_size: 1024  # 8 GPUs * 1 * 16 * 8 nodes
+  learning_rate: 2.0e-4
+  lr_scheduler: "cosine"
+  warmup_ratio: 0.03
+  weight_decay: 0.1
+  bf16: true
+  tf32: true
+  gradient_checkpointing: true
+  flash_attention: true
+  deepspeed: "configs/deepspeed_zero3.json"
+  logging_steps: 10
+  save_steps: 1000
+  eval_steps: 1000
+  save_total_limit: 5
+  max_steps: 120000
+  resume_from_checkpoint: null
+
+rlhf:
+  enabled: true
+  preference_data: "kv-creates/kv13-dpo-180k"
+  beta: 0.1
+  stage: "dpo"
+
+quantization:
+  methods: ["awq", "gptq", "gguf"]
+  bits: 4
+  group_size: 128
+
+eval:
+  benchmarks:
+    - humanevalfix
+    - defects4j
+    - cvefixes
+    - codereviewer
+  metrics: ["f1", "bleu", "fix_rate", "risk_calibration"]
+
+wandb:
+  project: "kv13"
+  entity: "kv-creates"
+  tags: ["13b", "code-intelligence"]
+
+hardware:
+  recommended: "8x A100 80GB"
+  alternative: "8x H100"
+  vram_per_gpu: "80GB"
+  training_time: "~4 days"
+  inference_vram_q4: "7GB"
+  inference_vram_fp16: "26GB"

@@ -1,0 +1,6 @@
+{
+  "description": "KV-13 Code Tokenizer - 52K vocab, 800 special tokens for code intelligence. Built on BPE with code-aware pre-tokenization.",
+  "vocab_size": 52000,
+  "special_tokens": ["<|file|>", "</|file|>", "<|bug|>", "<|fix|>", "<|review|>", "<|risk|>", "<|pad|>", "<|eos|>"],
+  "note": "Real tokenizer training: python model/tokenizer/train.py --data bigcode/the-stack-v2 --vocab 52000"
+}

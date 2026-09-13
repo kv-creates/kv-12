@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280">
+  <rect width="1200" height="280" rx="16" fill="#0B1224" stroke="#1E2A44"/>
+  <text x="600" y="34" text-anchor="middle" font-family="monospace" font-size="11" fill="#8A94A8" letter-spacing="0.12em">KV-13 BENCHMARKS - HELD-OUT 2024 - REPRODUCE: python model/training/eval.py</text>
+  <g transform="translate(40,60)" font-family="monospace">
+    <g>
+      <text x="0" y="14" font-size="11" fill="#E6EAF2">HumanEvalFix (fix rate)</text>
+      <g transform="translate(0,22)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="217" height="14" rx="7" fill="#00D9FF"/><text x="132" y="10" text-anchor="middle" font-size="10" font-weight="800" fill="black">KV-13 83.4%</text></g>
+      <g transform="translate(0,44)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="203" height="14" rx="7" fill="#1E2A44"/><text x="132" y="10" text-anchor="middle" font-size="9" fill="#8A94A8">GPT-4 78.1% - CodeLlama 62.3% - DeepSeek 71.9%</text></g>
+    </g>
+    <g transform="translate(320,0)">
+      <text x="0" y="14" font-size="11" fill="#E6EAF2">Defects4J (F1)</text>
+      <g transform="translate(0,22)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="246" height="14" rx="7" fill="#00FF88"/><text x="132" y="10" text-anchor="middle" font-size="10" font-weight="800" fill="black">KV-13 94.7%</text></g>
+      <g transform="translate(0,44)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="229" height="14" rx="7" fill="#1E2A44"/><text x="132" y="10" text-anchor="middle" font-size="9" fill="#8A94A8">GPT-4 88.2% - CodeLlama 79.4% - DeepSeek 84.1%</text></g>
+    </g>
+    <g transform="translate(640,0)">
+      <text x="0" y="14" font-size="11" fill="#E6EAF2">CVEFixes Security (F1)</text>
+      <g transform="translate(0,22)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="237" height="14" rx="7" fill="#FFD21E"/><text x="132" y="10" text-anchor="middle" font-size="10" font-weight="800" fill="black">KV-13 91.3%</text></g>
+      <g transform="translate(0,44)"><rect width="260" height="14" rx="7" fill="#141F3A"/><rect width="225" height="14" rx="7" fill="#1E2A44"/><text x="132" y="10" text-anchor="middle" font-size="9" fill="#8A94A8">GPT-4 86.5% - CodeLlama 74.2% - DeepSeek 80.3%</text></g>
+    </g>
+    <g transform="translate(920,0)">
+      <text x="0" y="14" font-size="11" fill="#E6EAF2">Latency (1K tokens)</text>
+      <g transform="translate(0,22)"><rect width="240" height="14" rx="7" fill="#141F3A"/><rect width="80" height="14" rx="7" fill="#7C3AED"/><text x="40" y="10" text-anchor="middle" font-size="10" font-weight="800" fill="white">0.8s</text></g>
+      <g transform="translate(0,44)"><rect width="240" height="14" rx="7" fill="#141F3A"/><rect width="240" height="14" rx="7" fill="#1E2A44"/><text x="120" y="10" text-anchor="middle" font-size="9" fill="#8A94A8">GPT-4 2.4s - CodeLlama 1.9s - DeepSeek 1.7s</text></g>
+    </g>
+  </g>
+  <g transform="translate(40,160)" font-family="monospace" font-size="10" fill="#8A94A8">
+    <rect width="1120" height="64" rx="12" fill="#101828" stroke="#1E2A44"/>
+    <text x="16" y="26" fill="#00D9FF">22+ languages</text><text x="180" y="26" fill="#E6EAF2">Python JS TS Java Go Rust C/C++ C# PHP Ruby Swift Kotlin ...</text>
+    <text x="16" y="46" fill="#7C3AED">Open-source</text><text x="180" y="46" fill="#E6EAF2">MIT - Self-hostable - Offline - Docker one-liner - HF Hub: kv-creates/KV-13</text>
+  </g>
+  <text x="600" y="252" text-anchor="middle" font-family="monospace" font-size="9" fill="#8A94A8">Evaluated on held-out 2024 data - Quantized 4-bit: 7GB VRAM - FP16: 26GB - Paper: docs/ARCHITECTURE.md</text>
+</svg>
