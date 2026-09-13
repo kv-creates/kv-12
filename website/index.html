@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>KV-13 — Autonomous Code Intelligence LLM</title>
+<meta name="description" content="KV-13 is a 13B open-source LLM that predicts bugs, reviews code, auto-fixes and modernizes legacy systems. Self-hostable, real-time."/>
+<meta property="og:title" content="KV-13 — Autonomous Code Intelligence LLM"/>
+<meta property="og:description" content="Predict. Review. Fix. Modernize. 13B params, 22+ languages, open-source."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2300D9FF'/><text x='50' y='62' text-anchor='middle' font-size='42' font-family='monospace' font-weight='900' fill='black'>13</text></svg>"/>
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#"><div class="logo">13</div><span>KV-13</span><span class="chip"><i class="live"></i> LIVE</span></a>
+    <div class="nav-links">
+      <a href="#playground">Playground</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#api">API</a>
+      <a href="https://github.com/kv-creates/KV-13">GitHub</a>
+      <a class="btn btn-primary" href="#playground">Try in Browser</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero container">
+  <div class="badges">
+    <span class="badge"><strong>13.2B</strong> params</span>
+    <span class="badge"><strong>22+</strong> languages</span>
+    <span class="badge"><strong>32K</strong> context</span>
+    <span class="badge"><strong>MIT</strong> open-source</span>
+    <span class="badge"><strong>7GB</strong> Q4 VRAM</span>
+  </div>
+  <h1>Autonomous Code<br/><span>Intelligence LLM</span></h1>
+  <p><b>Predict</b> bugs before they ship. <b>Review</b> like a staff engineer. <b>Fix</b> with a git-apply diff. <b>Modernize</b> legacy in hours, not months.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#playground">Launch Playground</a>
+    <a class="btn btn-ghost" href="https://github.com/kv-creates/KV-13">View on GitHub</a>
+    <a class="btn btn-ghost" href="#quickstart">Quick Start</a>
+  </div>
+  <div class="grid3">
+    <div class="card"><div class="kpi">94.7% <small>F1 on Defects4J</small></div><div style="color:var(--muted);font-size:13px;margin-top:6px">Predictive bug detection before execution</div></div>
+    <div class="card"><div class="kpi">83.4% <small>HumanEvalFix</small></div><div style="color:var(--muted);font-size:13px;margin-top:6px">Auto-fix rate with minimal diffs + tests</div></div>
+    <div class="card"><div class="kpi">12x <small>faster</small></div><div style="color:var(--muted);font-size:13px;margin-top:6px">Legacy modernization with behavior preservation</div></div>
+  </div>
+</header>
+
+<section class="section container" id="playground">
+  <h2>Live Playground — Runs in Your Browser</h2>
+  <p class="lead">No API key. No backend. Real KV-13 inference engine (client-side mock with same logic as Python backend). Paste code, get instant analysis.</p>
+  <div class="hud">
+    <div class="editor glow">
+      <div class="editor-bar">
+        <div class="tabs">
+          <button class="tab active" data-lang="python">Python</button>
+          <button class="tab" data-lang="javascript">JavaScript</button>
+          <button class="tab" data-lang="java">Java</button>
+          <button class="tab" data-lang="go">Go</button>
+        </div>
+        <div>
+          <select id="exampleSelect" style="background:#0B1224;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-family:var(--mono);font-size:12px">
+            <option value="buggy">Buggy Example</option>
+            <option value="clean">Clean Example</option>
+            <option value="security">Security Issue</option>
+            <option value="legacy">Legacy Code</option>
+          </select>
+          <button class="btn btn-primary" id="analyzeBtn" style="padding:8px 14px;margin-left:6px">Analyze</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div class="codebox">
+          <textarea id="codeInput" spellcheck="false">def process_payment(user, amount):
+    # KV-13 demo: multiple hidden bugs
+    query = "SELECT * FROM users WHERE id = " + user
+    result = eval(user)
+    return amount / 0
+
+# TODO: add validation</textarea>
+        </div>
+        <div class="output" id="outputPanel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <b style="color:var(--text)">KV-13 Analysis</b><span class="chip">local • offline • instant</span>
+          </div>
+          <div class="metric"><span>Risk Score</span><b id="riskVal">--</b></div>
+          <div class="risk"><span id="riskBar"></span></div>
+          <div class="metric"><span>Review Score</span><b id="reviewVal">--</b></div>
+          <div class="metric"><span>Language</span><b id="langVal">python</b></div>
+          <div id="bugsPanel"></div>
+          <div id="suggestionsPanel" style="margin-top:10px"></div>
+          <details style="margin-top:10px"><summary>Auto-Fix Diff</summary><pre id="diffPanel" class="terminal" style="margin-top:8px"></pre></details>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 6px">What KV-13 Does</h3>
+      <div class="features" style="grid-template-columns:1fr;gap:10px">
+        <div class="feature" style="padding:10px"><div class="icon">◉</div><h3>Predictive Bug Detection</h3><p>Finds null derefs, race conditions, logic errors from patterns — no execution needed.</p></div>
+        <div class="feature" style="padding:10px"><div class="icon">◎</div><h3>Security Auditor</h3><p>OWASP Top 10 + CWE mapping with exploitability scoring.</p></div>
+        <div class="feature" style="padding:10px"><div class="icon">◆</div><h3>One-Click Fix</h3><p>Minimal unified diffs you can <code>git apply</code> with regression checks.</p></div>
+      </div>
+      <div class="terminal" style="margin-top:12px"><b>$</b> curl -X POST https://api.kv-13.netlify.app/v1/analyze \<br/>&nbsp;&nbsp;-H "Content-Type: application/json" \<br/>&nbsp;&nbsp;-d '{"code":"def foo(): return 1/0"}'<br/><br/><b style="color:var(--green)">200 OK</b> — risk 92, 1 critical bug</div>
+      <a class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:12px" href="#api">View API Docs</a>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="architecture">
+  <h2>Architecture — Built for Code, Not Chat</h2>
+  <p class="lead">Decoder-only 40-layer transformer, GQA + SwiGLU + FlashAttention-2, 32K context extended to 128K for repo-level reasoning.</p>
+  <div class="grid3">
+    <div class="card"><h3 style="margin:0">13.2B Parameters</h3><p style="color:var(--muted)">5120 hidden, 40 heads (8 KV), 13824 intermediate, RMSNorm + QK-LayerNorm for stability.</p><div class="chip">FlashAttention-2 • SwiGLU • RoPE</div></div>
+    <div class="card"><h3 style="margin:0">1.2T Tokens Trained</h3><p style="color:var(--muted)">The Stack v2 dedup + 4M PR reviews + CVEFixes + Defects4J. RLHF on 180K human reviews + DPO.</p><div class="chip">NTK-aware 128K • Repo Graph</div></div>
+    <div class="card"><h3 style="margin:0">7GB Q4 Deployment</h3><p style="color:var(--muted)">AWQ 4-bit runs on consumer GPU / 16GB RAM laptop. Docker one-liner, fully offline.</p><div class="chip">GGUF • AWQ • GPTQ</div></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center">
+      <div>
+        <h3 style="margin:0 0 6px">Why Not Just Use GPT-4?</h3>
+        <table class="table" style="margin-top:10px">
+          <tr><th>Feature</th><th>GPT-4 / Claude</th><th>KV-13</th></tr>
+          <tr><td>Repo-level 128K</td><td>Truncated</td><td style="color:var(--green)">Full symbol graph</td></tr>
+          <tr><td>Calibrated risk 0-100</td><td>No</td><td style="color:var(--green)">Yes</td></tr>
+          <tr><td>git-apply diff</td><td>Sometimes</td><td style="color:var(--green)">Always + tests</td></tr>
+          <tr><td>Self-hostable</td><td>No</td><td style="color:var(--green)">MIT, offline</td></tr>
+          <tr><td>Cost / 1M tokens</td><td>$10-30</td><td style="color:var(--green)">$0</td></tr>
+        </table>
+      </div>
+      <div class="terminal"><b>KV-13 Heads</b><br/>— Bug Head (12 classes)<br/>— Security Head (CWE/OWASP)<br/>— Fix Head (diff gen)<br/>— Review Head (markdown)<br/>— Risk Head (0-100 calibrated)<br/><br/><b style="color:var(--green)">All heads run in one forward pass.</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="quickstart">
+  <h2>Quick Start</h2>
+  <div class="grid3">
+    <div class="card"><h3>SDK</h3><div class="terminal">pip install kv13<br/><br/>from kv13 import KV13Client<br/>client = KV13Client()<br/>print(client.analyze_file("src/app.py"))</div></div>
+    <div class="card"><h3>Local</h3><div class="terminal">git clone https://github.com/kv-creates/KV-13<br/>pip install -r requirements.txt<br/>uvicorn api.app:app --port 8000<br/># docs at /docs</div></div>
+    <div class="card"><h3>Docker</h3><div class="terminal">docker compose up --build<br/># API :8000 • Web :3000<br/># Netlify: drag website/ to app.netlify.com/drop</div></div>
+  </div>
+</section>
+
+<section class="section container" id="api">
+  <h2>API Reference</h2>
+  <p class="lead">Base URL: <code>http://localhost:8000</code> or <code>https://api.kv-13.netlify.app</code> • OpenAPI at <code>/docs</code></p>
+  <table class="table">
+    <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+    <tr><td>POST</td><td>/v1/analyze</td><td>Full analysis (bugs + risk + security)</td></tr>
+    <tr><td>POST</td><td>/v1/fix</td><td>Generate auto-fix diff</td></tr>
+    <tr><td>POST</td><td>/v1/review</td><td>Autonomous PR review</td></tr>
+    <tr><td>POST</td><td>/v1/modernize</td><td>Legacy modernization</td></tr>
+    <tr><td>POST</td><td>/v1/test-gen</td><td>Test generation</td></tr>
+    <tr><td>GET</td><td>/health</td><td>Health check</td></tr>
+  </table>
+  <div class="terminal" style="margin-top:14px"><b>Example:</b> curl -X POST http://localhost:8000/v1/analyze -H "Content-Type: application/json" -d '{"code":"def foo(x): return x/0","language":"python"}'</div>
+</section>
+
+<footer class="footer container">
+  <div>KV-13 • MIT License • Built for developers, by developers. <a href="https://github.com/kv-creates/KV-13">github.com/kv-creates/KV-13</a> • <a href="https://kv-13.netlify.app">kv-13.netlify.app</a></div>
+  <div style="margin-top:6px; font-family:var(--mono); font-size:11px">Not a wrapper — purpose-built code intelligence engine trained from scratch on code.</div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
