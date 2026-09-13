@@ -217,3 +217,4 @@ kv-12/
 MIT — See [LICENSE](LICENSE).
 
 <p align="center"><sub>Built for developers, by developers. Minimalist, not minimal.</sub></p>
+<!-- polish 11 docs: add DESIGN_TOKENS minima -->
