@@ -57,3 +57,4 @@ target-version = "py310"
 testpaths = ["tests"]
 asyncio_mode = "auto"
 <!-- polish 2 chore: bump pyproject to 12.2. -->
+<!-- polish 33 chore: pyproject keywords -->
