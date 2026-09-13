@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00D9FF"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient></defs>
+  <rect width="1200" height="520" rx="20" fill="#0B1224" stroke="#1E2A44"/>
+  <text x="600" y="36" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="0.14em" fill="#8A94A8">KV-13 ARCHITECTURE - 40 LAYERS - GQA - SWIGLU - FLASHATTN-2</text>
+  <g font-family="monospace" font-size="11" fill="#E6EAF2">
+    <g transform="translate(24,64)"><rect width="210" height="90" rx="14" fill="#101828" stroke="#1E2A44"/><text x="105" y="28" text-anchor="middle" font-weight="800" fill="#00D9FF">INPUT</text><text x="105" y="48" text-anchor="middle" font-size="10" fill="#8A94A8">Code + AST + CFG</text><text x="105" y="64" text-anchor="middle" font-size="10" fill="#8A94A8">Repo Graph (128K)</text></g>
+    <g transform="translate(258,64)"><rect width="210" height="90" rx="14" fill="#101828" stroke="#00D9FF"/><text x="105" y="28" text-anchor="middle" font-weight="800" fill="#00D9FF">TOKENIZER</text><text x="105" y="48" text-anchor="middle" font-size="10" fill="#8A94A8">52K BPE - 800 special</text><text x="105" y="64" text-anchor="middle" font-size="10" fill="#8A94A8">Byte-level code-aware</text></g>
+    <g transform="translate(492,64)"><rect width="210" height="90" rx="14" fill="#141F3A" stroke="#7C3AED"/><text x="105" y="28" text-anchor="middle" font-weight="800" fill="#FFD21E">BACKBONE</text><text x="105" y="48" text-anchor="middle" font-size="10" fill="#8A94A8">40x Transformer</text><text x="105" y="64" text-anchor="middle" font-size="10" fill="#8A94A8">5120 hidden - GQA 40/8</text></g>
+    <g transform="translate(726,64)"><rect width="210" height="90" rx="14" fill="#101828" stroke="#7C3AED"/><text x="105" y="28" text-anchor="middle" font-weight="800" fill="#7C3AED">REPO ATTENTION</text><text x="105" y="48" text-anchor="middle" font-size="10" fill="#8A94A8">Cross-file symbols</text><text x="105" y="64" text-anchor="middle" font-size="10" fill="#8A94A8">NTK 128K window</text></g>
+    <g transform="translate(960,64)"><rect width="216" height="90" rx="14" fill="#101828" stroke="#00FF88"/><text x="108" y="28" text-anchor="middle" font-weight="800" fill="#00FF88">HEADS (parallel)</text><text x="108" y="48" text-anchor="middle" font-size="10" fill="#8A94A8">Bug - Fix - Review</text><text x="108" y="64" text-anchor="middle" font-size="10" fill="#8A94A8">Security - Risk</text></g>
+  </g>
+  <g transform="translate(24,184)">
+    <rect width="1172" height="180" rx="16" fill="#101828" stroke="#1E2A44"/>
+    <g font-family="monospace" font-size="11">
+      <g transform="translate(20,24)"><rect width="220" height="136" rx="12" fill="#0B1224" stroke="#FF3B30"/><text x="110" y="22" text-anchor="middle" font-weight="800" fill="#FF3B30">BUG HEAD</text><text x="110" y="42" text-anchor="middle" font-size="10" fill="#8A94A8">12 classes</text><text x="20" y="62" font-size="10" fill="#E6EAF2">- DivisionByZero</text><text x="20" y="78" font-size="10" fill="#E6EAF2">- SQLInjection</text><text x="20" y="94" font-size="10" fill="#E6EAF2">- RaceCondition</text><text x="110" y="130" text-anchor="middle" font-size="9" fill="#FF3B30">F1 94.7%</text></g>
+      <g transform="translate(254,24)"><rect width="220" height="136" rx="12" fill="#0B1224" stroke="#00D9FF"/><text x="110" y="22" text-anchor="middle" font-weight="800" fill="#00D9FF">FIX HEAD</text><text x="110" y="42" text-anchor="middle" font-size="10" fill="#8A94A8">Diff generation</text><text x="20" y="62" font-size="10" fill="#E6EAF2">- Minimal unified diff</text><text x="20" y="78" font-size="10" fill="#E6EAF2">- git apply ready</text><text x="20" y="94" font-size="10" fill="#E6EAF2">- With tests</text><text x="110" y="130" text-anchor="middle" font-size="9" fill="#00D9FF">83.4% fix rate</text></g>
+      <g transform="translate(488,24)"><rect width="220" height="136" rx="12" fill="#0B1224" stroke="#7C3AED"/><text x="110" y="22" text-anchor="middle" font-weight="800" fill="#7C3AED">REVIEW HEAD</text><text x="110" y="42" text-anchor="middle" font-size="10" fill="#8A94A8">Markdown review</text><text x="20" y="62" font-size="10" fill="#E6EAF2">- Complexity score</text><text x="20" y="78" font-size="10" fill="#E6EAF2">- Suggestions</text><text x="20" y="94" font-size="10" fill="#E6EAF2">- Approve/request</text><text x="110" y="130" text-anchor="middle" font-size="9" fill="#7C3AED">4.8/5 vs GPT-4</text></g>
+      <g transform="translate(722,24)"><rect width="220" height="136" rx="12" fill="#0B1224" stroke="#FFD21E"/><text x="110" y="22" text-anchor="middle" font-weight="800" fill="#FFD21E">SECURITY HEAD</text><text x="110" y="42" text-anchor="middle" font-size="10" fill="#8A94A8">CWE / OWASP</text><text x="20" y="62" font-size="10" fill="#E6EAF2">- Hardcoded secrets</text><text x="20" y="78" font-size="10" fill="#E6EAF2">- Injection</text><text x="20" y="94" font-size="10" fill="#E6EAF2">- Weak crypto</text><text x="110" y="130" text-anchor="middle" font-size="9" fill="#FFD21E">F1 91.3%</text></g>
+      <g transform="translate(956,24)"><rect width="196" height="136" rx="12" fill="#00FF88"/><text x="98" y="22" text-anchor="middle" font-weight="800" fill="black">RISK HEAD</text><text x="98" y="42" text-anchor="middle" font-size="10" fill="black">Calibrated 0-100</text><text x="98" y="70" text-anchor="middle" font-size="28" font-weight="900" fill="black">92</text><text x="98" y="88" text-anchor="middle" font-size="10" fill="black">CRITICAL</text><text x="98" y="112" text-anchor="middle" font-size="9" fill="black">One pass - 0.8s</text></g>
+    </g>
+  </g>
+  <g transform="translate(24,390)" font-family="monospace">
+    <rect width="1172" height="106" rx="16" fill="#0B1224" stroke="#1E2A44"/>
+    <text x="20" y="26" font-size="11" font-weight="800" fill="#00D9FF">OUTPUT - All heads emit together - single forward pass</text>
+    <g font-size="10" fill="#8A94A8">
+      <text x="20" y="46">Risk: 0-100 calibrated</text><text x="260" y="46">Bug spans + fix diff + tests</text><text x="520" y="46">Markdown review + score</text><text x="780" y="46">SARIF security report</text><text x="1020" y="46">Latency 0.8s/1K</text>
+    </g>
+    <g transform="translate(20,62)">
+      <rect width="360" height="28" rx="8" fill="#101828" stroke="#1E2A44"/><text x="12" y="18" font-size="10" fill="#00FF88">git apply fix.diff</text>
+      <rect x="390" width="360" height="28" rx="8" fill="#101828" stroke="#1E2A44"/><text x="402" y="18" font-size="10" fill="#00D9FF">POST /v1/analyze - JSON</text>
+      <rect x="760" width="392" height="28" rx="8" fill="#101828" stroke="#1E2A44"/><text x="772" y="18" font-size="10" fill="#FFD21E">GitHub Action: fail if risk &gt; 75</text>
+    </g>
+  </g>
+</svg>
