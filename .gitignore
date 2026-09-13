@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Model weights
+checkpoints/
+weights/
+*.bin
+*.safetensors
+*.gguf
+model/cache/
+
+# Env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Netlify
+.netlify/
+website/.netlify/
+
+# Logs
+logs/
+wandb/
+*.log
+
+# Zip bundles (generated)
+*.zip
+!examples/*.zip
